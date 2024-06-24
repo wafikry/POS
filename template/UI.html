@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dine-In</title>
+    <link href="./css/ui-pos.css" rel="stylesheet" />
+    <link href="../css/material-icons.css" rel="stylesheet" />
+    <link href="../css/ui-share.css" rel="stylesheet" />
+    <link href="../css/ui-user.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <!-- template start -->
+    <div class="content">
+        <div>POS</div>
+    </div>
+    <div class="datetime"></div>
+    <img src="./picture/menu (2).png" class="toggle-nav">
+    <div class="flx-nw">
+        <!-- Navigation Menu -->
+        <div class="navbar">
+            <div class="nav-item" data-target="pos">POS</div>
+            <div class="nav-item" data-target="settings">Settings</div>
+            <!-- Add more items as needed -->
+        </div>
+        <div class="category">
+            <!-- Categories will be dynamically inserted here -->
+        </div>
+        <div class="list">
+            <!-- Menu items will be dynamically inserted here -->
+        </div>
+        
+        <div class="a0-container">
+            
+            <div class="pos-container">
+                <div class="pos-qty-container">
+                    <div class="a0-qty">Qty</div>
+                </div>
+                <div class="description">
+                    <div class="a0-descr">Description</div>
+                    <div class="pos">
+                        <!-- POS items will be dynamically inserted here -->
+                    </div>
+                </div>
+                <div class="a0-price">Price</div>
+            </div>
+            
+            <div class="payment-container">
+                <div class="total-before-tax">Total: 0.00</div>
+                <div class="tax">Tax: 0.00</div>
+                <div class="total-price">Total Amount: 0.00</div>
+                <div class="payment-container01">
+                    <div class="payment">Payment</div>
+                    <div class="confirm-order">Order Confirm</div>
+                </div>
+                <div class="payment-methods">
+                    <!-- Payment methods content will be dynamically inserted here -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- template end -->
+    <script type="module" src="./js/pos-ui.js"></script>
+</body>
+</html>
