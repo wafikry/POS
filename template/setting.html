@@ -1,20 +1,36 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Setting</title>
+    <title>Settings</title>
     <meta charset="utf-8" />
     <link href="./css/ui-pos.css" rel="stylesheet" />
     <link href="../css/material-icons.css" rel="stylesheet" />
     <link href="../css/ui-share.css" rel="stylesheet" />
     <link href="../css/ui-user.css" rel="stylesheet" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="./js/setting.js"></script>
 </head>
 <body>
-    <!-- template start -->
+    <!-- Main content start -->
     <div class="content">
-        <div>Setting</div>
+        <h1>Settings</h1>
+    </div>
+    <img src="./picture/left-arrow.png" alt="back button" class="navigate-to-ui">
+
+    <div class="flx-nw">
+        <div class="set-container">
+            <div class="set-item" data-setting="food">Food</div>
+            <div class="set-item" data-setting="payment">Payment Method</div>
+            <div class="set-item" data-setting="inventory">Inventory</div>
+        </div>
     </div>
     
-    <!-- template end -->
+    <!-- Placeholder for setting details -->
+    <div class="setting-details">
+        <!-- Details will be dynamically loaded here based on the selection -->
+    </div>
+    
+    
+    <!-- Main content end -->
 </body>
 </html>

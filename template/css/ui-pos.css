@@ -16,35 +16,50 @@ body {
 .flx-nw {
     display: flex;
     flex-direction: row;
+    gap: 20px;
+    padding: 20px;
+    align-items: flex-start;
+    height: 100%;
+}
+.flx-nw-col{
+    display: flex;
+    flex-direction: column;
     justify-content: space-between;
     gap: 20px;
     padding: 20px;
+    align-items: flex-start;
+    height: 100%;
+    width:80%
 }
 
 .category {
-    height:600px;
+    width: 100%; /* Adjust width as needed */
     display: flex;
-    flex-direction: column;
-    background-color: #ffffff;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 20px;
     padding: 20px;
-    width: 220px;
     box-sizing: border-box;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
     border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .cat-item {
+    width: 120px; /* Adjust width and margin as needed */
+    height: 60px; /* Example fixed height */
     background: linear-gradient(135deg, #9c27b0, #673ab7); /* Gradient of purple shades */
     border-radius: 12px;
     border: none;
     padding: 20px;
-    margin: 10px 0;
+    margin-bottom: 20px;
     text-align: center;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
     color: #fff; /* White font color */
     font-weight: bold;
     font-family: 'Roboto', sans-serif; /* Roboto font family */
+    box-sizing: border-box;
 }
 
 .menu-item:hover {
@@ -53,12 +68,12 @@ body {
 }
 
 .list {
-    width: 100%;
-    height: 600px; /* Example fixed height */
+    width: 100%; /* Adjust width as needed */
+    height: 300px; /* Example fixed height */
     padding: 20px;
     display: flex;
     flex-wrap: wrap;
-    overflow-x: auto;
+    overflow-y: overlay;
     box-sizing: border-box;
     background-color: #ffffff;
     border-radius: 12px;
@@ -101,13 +116,26 @@ body {
     background-color: #ffffff;
     box-sizing: border-box;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    position:relative;
+    position: relative;
     max-height: 400px;
-    overflow-y: auto;
-    justify-content:space-around
+    overflow-y: overlay; /* Modern browsers */
+    justify-content: space-around;
+}
+.pos-container::-webkit-scrollbar {
+    width: 8px;
+}
+.pos-container::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+}
+
+.pos-container::-webkit-scrollbar-track {
+    background: transparent;
 }
 
 .pos-item {
+    width: 200px; /* Set a fixed width */
+    height: 50px; /* Set a fixed height */
     padding: 15px;
     margin-bottom: 10px;
     background-color: #ecf0f1;
@@ -115,6 +143,11 @@ body {
     transition: background-color 0.3s ease;
     color: #2c3e50;
     font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center; /* Center content vertically */
+    justify-content: center; /* Center content horizontally */
+    box-sizing: border-box; /*
 }
 
 .pos-item:hover {
@@ -146,17 +179,24 @@ body {
     gap: 10px;
     overflow: visible; /* Ensure overflow is visible to accommodate absolute positioning */
 }
-
+.a0-container{
+    display: flex;
+    flex-direction: column;
+    gap: 0; 
+}
 .payment-method{
     display: none;
 }
 
 .total-before-tax,
 .tax,
-.total-price {
-    font-size: 18px;
+.total-price,
+.discount,
+.cash-back,
+.service-charge {
+    font-size: 16px;
     font-weight: bold;
-    padding: 10px;
+    padding: 4px;
     background-color: #f4f7f9;
     border-radius: 8px;
     text-align: center;
@@ -175,6 +215,18 @@ body {
     background-color: #2c3e50;
     color: #ffffff;
     margin-bottom: 0;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-size: 16px;
+    font-weight: bold;
+    display: inline-block;
+}
+.total-price .value{
+    color: white;
 }
 
 .payment-container01 {
@@ -199,6 +251,21 @@ body {
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
     color: #ffffff;
+}
+
+.label {
+    font-weight: bold;
+    margin-right: 10px; /* Adjust spacing between label and value */
+}
+.value {
+    color: #2c3e50; /* Adjust color if needed */
+}
+
+.total-before-tax, .discount, .cash-back, .service-charge, .tax, .balance{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0; /* Adjust padding if needed */
+    border-bottom: 1px solid #ddd; /* Optional, for separation */
 }
 
 .payment {
@@ -314,35 +381,49 @@ body {
     text-align: center;
 }
 .payment-methods {
-    display: none;
+    display: none; /* Initially hidden */
     position: absolute;
-    top: 100px;
-    right: calc(100% + 1px); /* Position to the left of the payment container */
+    top: 70%; /* Position below the .payment button */
+    left: 80%; /* Center horizontally */
     width: 200px; /* Adjust width as needed */
-    background-color: #006A4E;
+    background-color: #006A4E; /* Background color */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
     z-index: 1000;
-    opacity: 0;
-    transition: opacity 0.3s ease, right 0.3s ease; /* Transition for smooth animation */
-    display: flex;
+    opacity: 0; /* Start with 0 opacity for fade-in effect */
+    transform: translateX(0); /* No initial translation */
+    transition: opacity 0.3s ease, transform 0.3s ease; /* Smooth transition */
+    display: flex; /* Flex container */
     flex-wrap: wrap;
     justify-content: center;
     padding: 10px;
-    flex-direction: column;
+}
+
+.payment-methods.visible {
+    display: flex; /* Display flex when visible */
+    opacity: 1; /* Full opacity when visible */
+    transform: translateX(-180%); /* Shift to the left when visible */
 }
 
 
-.payment-methods.visible {
-    display: flex;
-    opacity: 1;
+@media only screen and (max-width: 768px) {
+    .payment-methods.visible {
+        width: 100%; /* Full width on mobile */
+        max-width: 100%;
+        position: relative; /* Adjust to relative to flow within the document */
+        right: 0;
+        top: 0;
+        left: 0;
+        margin-top: 10px; /* Space between the button and the payment methods */
+        transform: translateX(0); /* No slide effect on mobile */
+    }
 }
 
 .payment-methods::before {
     content: "";
     position: absolute;
     top: -8px;
-    right: 12px;
+    left: 12px;
     border-width: 8px;
     border-style: solid;
     border-color: transparent transparent #006A4E transparent; /* Match background color */
@@ -430,3 +511,337 @@ body {
     }
 }
 
+.calculator {
+    background-color: #f2f2f2;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    width: 240px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.calculator-screen {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px;
+    text-align: right;
+    font-size: 24px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.calculator-keys {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+}
+
+.key {
+    background-color: #e0e0e0;
+    border: none;
+    border-radius: 4px;
+    padding: 15px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.key:hover {
+    background-color: #ccc;
+}
+
+.clear {
+    grid-column: span 2; /* Make the clear button span two columns */
+}
+
+.dot {
+    font-size: 20px;
+}
+
+.pay-btn,
+.cancel-btn,
+.done-btn,
+.exact-btn {
+    display: inline-block;
+    width: 100%;
+    max-width: 200px;
+    background-color: #2ecc71; /* Green background color */
+    color: #fff; /* White text color */
+    border: none;
+    border-radius: 4px;
+    padding: 12px 20px; /* Padding for better clickability */
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+    text-align: center; /* Center text */
+    text-decoration: none; /* Remove underline */
+    box-sizing: border-box; /* Include padding and border in width */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.pay-btn:hover,
+.cancel-btn:hover,
+.done-btn:hover,.exact-btn:hover {
+    background-color: #27ae60; /* Darker green on hover */
+}
+
+.done-btn {
+    background-color: #3498db; /* Blue background color for "Done" button */
+}
+
+.done-btn:hover {
+    background-color: #2980b9; /* Darker blue on hover for "Done" button */
+}
+
+.set-container {
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 300px;
+    margin-bottom: 20px;
+}
+
+.set-item {
+    background-color: #007bff;
+    color: #fff;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 4px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.set-item:hover {
+    background-color: #0056b3;
+}
+
+/* Setting Details */
+.setting-details {
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    border-radius: 8px;
+    margin: 20px 20px 0;
+    flex-grow: 1;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .flx-nw {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .setting-details {
+        margin: 20px 0;
+    }
+}
+/* Form Styles */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.form-group input, 
+.form-group select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+button[type="submit"] {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* CSS for the back button */
+.navigate-to-ui {
+    width: 40px; /* Adjust width as needed */
+    height: 40px; /* Adjust height as needed */
+    cursor: pointer; /* Change cursor to pointer on hover */
+}
+
+.navigate-to-ui:hover {
+    opacity: 0.8; /* Reduce opacity on hover for visual feedback */
+}
+.option-setting-container {
+    position: absolute;
+    top: 40px; /* Adjust position from the top as needed */
+    right: 20px; /* Adjust position from the right as needed */
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    border-radius: 8px;
+    z-index: 1000;
+    display: none; /* Initially hidden */
+    max-height: 200px; /* Adjust height as needed */
+    overflow-y: auto; /* Enable vertical scrolling */
+    cursor: pointer;
+}
+
+.option-setting-container .option-pos-item {
+    padding: 10px;
+    margin: 5px 0;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    white-space: pre-wrap; /* Preserve whitespace and wrap */
+    text-align: center;
+}
+
+.option-setting-container .option-pos-item:hover {
+    background-color: #f0f0f0;
+    transform: translateY(-3px);
+}
+
+.searchInput {
+    width: 100%;
+    top: 20px;
+    left: 50%;
+   /* transform: translateX(-0%);*/
+    z-index: 1000;
+    max-width: 400px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.searchInput:focus {
+    border-color: #66afe9;
+}
+.balance {
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #333;
+    padding: 15px 25px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    transition: all 0.3s ease;
+}
+
+.balance:hover {
+    background-color: #f4f4f4;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+.a0-qty-num {
+    display: flex;
+    align-items: center;
+}
+
+.item-image {
+    width: 15px; /* Adjust size as needed */
+    height: 15px; /* Adjust size as needed */
+    margin-right: 10px; /* Space between image and quantity */
+}
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-content h2 {
+    text-align: center;
+}
+
+.modal-content p {
+    text-align: center;
+}
+
+.modal-content button {
+    display: block;
+    margin: 10px auto;
+}
+
+.item-description {
+    flex: 2;
+    text-align: left;
+    padding: 0 10px;
+    font-size: 16px;
+}
+.bin {
+    height: 20px;
+    width: 20px;
+    
+}
+
+.bin:hover {
+    background-color: #d54545; /* Hover background color */
+    background-color: #ccc; /* Default background color */
+    border-radius: 50%; /* To make it a circle */
+    display: inline-block; /* Ensures it behaves like a block element */
+    transition: background-color 0.3s ease; /* Smooth transition */
+    cursor: pointer;
+}
+.out-pos-container {
+    display: flex;
+    align-items: center; /* Align items vertically in the center */
+    gap: 10px; /* Adjust the space between items */
+}
+.add-cust {
+    font-weight: bold;
+    color: #333;
+}

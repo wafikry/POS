@@ -14,25 +14,43 @@
     <!-- template start -->
     <div class="content">
         <div>POS</div>
+        <div class="datetime"></div>
+        <img src="./picture/menu (2).png" class="toggle-nav">
+        
     </div>
-    <div class="datetime"></div>
-    <img src="./picture/menu (2).png" class="toggle-nav">
+    
     <div class="flx-nw">
+       
         <!-- Navigation Menu -->
         <div class="navbar">
             <div class="nav-item" data-target="pos">POS</div>
             <div class="nav-item" data-target="settings">Settings</div>
             <!-- Add more items as needed -->
         </div>
-        <div class="category">
-            <!-- Categories will be dynamically inserted here -->
-        </div>
-        <div class="list">
-            <!-- Menu items will be dynamically inserted here -->
-        </div>
-        
-        <div class="a0-container">
+        <div class="flx-nw-col">
+            <input class="searchInput" type="text" placeholder="Search items...">
+            <div class="list">
+                <!-- Menu items will be dynamically inserted here -->
+            </div>
             
+            <div class="category">
+                <!-- Categories will be dynamically inserted here -->
+            </div>
+        </div>
+        <div class="a0-container">
+            <div class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <h2>Edit Quantity</h2>
+                    <p>Current Quantity: <span class="current-quantity"></span></p>
+                    <input type="number" class="quantity-input" min="1" value="1">
+                    <button class="confirm-btn">Confirm</button>
+                </div>
+            </div>
+            <div class="out-pos-container">
+                <img class="bin" alt="Bin" src="./picture/bin.png"> 
+                <div class="add-cust">Add Customer</div> 
+            </div> 
             <div class="pos-container">
                 <div class="pos-qty-container">
                     <div class="a0-qty">Qty</div>
@@ -47,16 +65,48 @@
             </div>
             
             <div class="payment-container">
-                <div class="total-before-tax">Total: 0.00</div>
-                <div class="tax">Tax: 0.00</div>
-                <div class="total-price">Total Amount: 0.00</div>
+                <div class="total-before-tax">
+                    <span class="label">Subtotal:</span>
+                    <span class="value">0.00</span>
+                </div>
+                <div class="discount">
+                    <span class="label">Discount:</span>
+                    <span class="value">0.00</span>
+                </div>
+                <div class="cash-back">
+                    <span class="label">Cashback:</span>
+                    <span class="value">0.00</span>
+                </div>
+                <div class="service-charge">
+                    <span class="label">Service Charge:</span>
+                    <span class="value">0.00</span>
+                </div>
+                <div class="tax">
+                    <span class="label">Tax:</span>
+                    <span class="value">0.00</span>
+                </div>
+                <div class="balance">
+                    <span class="label">Amount Due:</span>
+                    <span class="value">0.00</span>
+                </div>
+                
                 <div class="payment-container01">
-                    <div class="payment">Payment</div>
-                    <div class="confirm-order">Order Confirm</div>
+                    <div class="total-price">
+                        <span class="label">Total Amount:</span>
+                        <span class="value">0.00</span>
+                    </div>
+                    
+                    <div class="confirm-order">Save</div>
                 </div>
                 <div class="payment-methods">
                     <!-- Payment methods content will be dynamically inserted here -->
                 </div>
+                <div class="price-input-container">
+                    <div class="price-input"></div>
+                </div>
+            </div>
+            <div class="item-setting">
+                <div class="option-setting-container"></div>
             </div>
         </div>
     </div>
