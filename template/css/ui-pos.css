@@ -7,7 +7,7 @@ body {
 }
 
 .content {
-    padding: 20px;
+    padding-top: 2px;
     font-size: 24px;
     font-weight: bold;
     color: #2c3e50;
@@ -16,7 +16,7 @@ body {
 .flx-nw {
     display: flex;
     flex-direction: row;
-    gap: 20px;
+    gap: 0px;
     padding: 20px;
     align-items: flex-start;
     height: 100%;
@@ -25,11 +25,20 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    gap: 20px;
-    padding: 20px;
+    gap: 10px;
+    padding: 15px;
     align-items: flex-start;
     height: 100%;
     width:80%
+}
+.flx-nw-row{
+    display: flex;
+    flex-direction: row;
+    /*justify-content: space-between;*/
+    padding-top: 0px;
+    padding-bottom: 0px;
+    gap: 2px;
+
 }
 
 .category {
@@ -70,7 +79,7 @@ body {
 .list {
     width: 100%; /* Adjust width as needed */
     height: 300px; /* Example fixed height */
-    padding: 20px;
+    padding: 10px;
     display: flex;
     flex-wrap: wrap;
     overflow-y: overlay;
@@ -82,7 +91,7 @@ body {
 
 .list .prd-item {
     border: none;
-    padding: 15px;
+    padding: 10px;
     margin: 10px;
     width: 150px;
     height: 100px;
@@ -104,7 +113,16 @@ body {
     transform: scale(1.05);
     background-color: #bdc3c7;
 }
-
+.list::-webkit-scrollbar{
+    width: 8px;
+}
+.list::-webkit-scrollbar-thumb{
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+}
+.list::-webkit-scrollbar-track{
+    background: transparent;
+}
 .pos-container {
     display: flex;
     flex-direction: row;
@@ -119,7 +137,7 @@ body {
     position: relative;
     max-height: 400px;
     overflow-y: overlay; /* Modern browsers */
-    justify-content: space-around;
+    justify-content:left;
 }
 .pos-container::-webkit-scrollbar {
     width: 8px;
@@ -132,21 +150,36 @@ body {
 .pos-container::-webkit-scrollbar-track {
     background: transparent;
 }
-
-.pos-item {
-    width: 200px; /* Set a fixed width */
-    height: 50px; /* Set a fixed height */
-    padding: 15px;
-    margin-bottom: 10px;
-    background-color: #ecf0f1;
+.a0-descr{
+    width: 200px;
+    padding: 5px;
+    margin-bottom: 0px;
+     background-color: #ecf0f1; 
     border-radius: 8px;
     transition: background-color 0.3s ease;
     color: #2c3e50;
+    font-size: small;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    box-sizing: border-box;
+}
+.pos-item {
+    width: 200px; 
+    padding: 15px;
+    margin-bottom: 10px;
+    /*background-color: #ecf0f1;*/
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+    color: #2c3e50;
+    font-size: small;
     font-weight: bold;
     cursor: pointer;
     display: flex;
     align-items: center; /* Center content vertically */
-    justify-content: center; /* Center content horizontally */
+    justify-content: left; 
     box-sizing: border-box; /*
 }
 
@@ -212,7 +245,9 @@ body {
 }
 
 .total-price {
-    background-color: #2c3e50;
+    height: 60px;
+    width: 110px;
+    background-color: #f1aa36;
     color: #ffffff;
     margin-bottom: 0;
     padding: 10px 20px;
@@ -221,12 +256,33 @@ body {
     text-align: center;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
-    font-size: 16px;
+    font-size:large;
     font-weight: bold;
-    display: inline-block;
+    display: flex; /* Use flexbox */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
 }
-.total-price .value{
-    color: white;
+
+.total-price .label, .total-price .value {
+    color: #ffffff; /* Ensure both have the same color, adjust if necessary */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.total-price .value {
+    color: rgb(72, 16, 16);
+}
+
+.total-price:hover {
+    background-color: #e67e22; /* Darker orange on hover */
+    transform: scale(1.05); /* Slightly enlarge on hover for effect */
+}
+.payment-container{
+    display: flex;
+    flex-direction: column;
+    padding: 40px;
+    padding-top: 0px;
 }
 
 .payment-container01 {
@@ -252,13 +308,41 @@ body {
     transition: background-color 0.3s ease, transform 0.2s ease;
     color: #ffffff;
 }
+.confirm-order{
+    height: 60px;
+    width: 110px;
+    background-color: #f1aa36;
+    color: #ffffff;
+    margin-bottom: 0;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-size: large;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 .label {
+    font-size: 15px;
     font-weight: bold;
     margin-right: 10px; /* Adjust spacing between label and value */
 }
 .value {
+    font-weight: bold;
+    font-size: 15px;
     color: #2c3e50; /* Adjust color if needed */
+}
+.balance .label{
+    font-size: 15px;
+}
+.balance .value{
+    font-size: 15px;
+    font-weight: bold;
 }
 
 .total-before-tax, .discount, .cash-back, .service-charge, .tax, .balance{
@@ -355,6 +439,20 @@ body {
 .method:hover {
     background-color: #f4f4f4;
 }
+.a0-qty-wrd{
+    padding: 5px;
+    margin-bottom: 0px;
+     background-color: #ecf0f1; 
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+    color: #2c3e50;
+    font-size: small;
+    font-weight: bold;
+    cursor: pointer;
+    align-items: center;
+    justify-content: left;
+    box-sizing: border-box;
+}
 
 .pos-qty-a0-qty{
     padding: 15px;
@@ -366,13 +464,20 @@ body {
     font-weight: bold;
 }
 .a0-qty-num{
+    width: 6px;
     padding: 15px;
     margin-bottom: 10px;
-    background-color: #ecf0f1;
+    /*background-color: #ecf0f1;*/
     border-radius: 8px;
     transition: background-color 0.3s ease;
     color: #2c3e50;
+    font-size: small;
     font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
 }
 .a0-qty{
     text-align: center;
@@ -481,15 +586,34 @@ body {
 .option-pos-item:last-child {
     margin-bottom: 0;
 }
-
-.a0-price-num{
-    padding: 15px;
-    margin-bottom: 10px;
+.a0-price-wrd{
+    padding: 5px;
+    margin-bottom: 0px;
     background-color: #ecf0f1;
     border-radius: 8px;
     transition: background-color 0.3s ease;
     color: #2c3e50;
+    font-size: small;
     font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+}
+.a0-price-num{
+    display: flex;
+    padding: 15px;
+    margin-bottom: 10px;
+    /*background-color: #ecf0f1;*/
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+    color: #2c3e50;
+    font-size: small;
+    font-weight: bold;
+    justify-content: left;
+    box-sizing: border-box;
+    align-items: center;
 }
 
 @media only screen and (max-width: 768px) {
@@ -723,13 +847,15 @@ button[type="submit"]:hover {
 }
 
 .searchInput {
-    width: 100%;
-    top: 20px;
+    display: none;
+    width: 80%;
+    height: auto;
+    top: 15px;
     left: 50%;
    /* transform: translateX(-0%);*/
     z-index: 1000;
-    max-width: 400px;
-    padding: 10px;
+    max-width: 250px;
+    padding: 5px;
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 16px;
@@ -745,7 +871,7 @@ button[type="submit"]:hover {
     font-weight: bold;
     font-size: 1.2rem;
     color: #333;
-    padding: 15px 25px;
+    padding-top: 1px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     display: flex;
     align-items: center;
@@ -840,8 +966,32 @@ button[type="submit"]:hover {
     display: flex;
     align-items: center; /* Align items vertically in the center */
     gap: 10px; /* Adjust the space between items */
+    padding-top: 35px;
 }
 .add-cust {
     font-weight: bold;
     color: #333;
+}
+.cancel-payment{
+    height: 20px;
+    width: 20px;
+    right: 0px;
+    top: 1px;
+    position: absolute;
+    cursor: pointer;
+}
+.cancel-payment:hover{
+    background-color: #eeeb23;
+    border-radius: 50px;
+}
+
+.add-cust-button{
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+}
+.search-item{
+    height: 30px;
+    width: 30px;
+    padding: 5px;
 }

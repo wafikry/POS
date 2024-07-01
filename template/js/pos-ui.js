@@ -95,8 +95,8 @@ function posOrder() {
     //---------------------------------------------------
     // Click event handler for .confirm-order
     $(document).on('click', '.confirm-order', function() {
-        $(this).toggleClass('confirmed').text(function(i, text) {
-            return text === "Order Confirm" ? "Confirmed" : "Order Confirm";
+        $(this).toggleClass('Cancel').text(function(i, text) {
+            return text === "Save" ? "Cancel" : "Save";
         });
     });
     //---------------------------------------------------
@@ -117,11 +117,11 @@ function posOrder() {
         totalPrice += tax; // Add tax to totalPrice
 
         // Toggle text between "Payment" and "Cancel"
-        if ($this.text() === 'Total Amount: ' + totalPrice.toFixed(2)) {
+       /* if ($this.text() === 'Total Amount: ' + totalPrice.toFixed(2)) {
             $this.text('Cancel');
         } else {
             $this.text("Total Amount: " + totalPrice.toFixed(2));
-        }
+        }*/
         // Toggle visibility of payment methods
         $(".payment-methods").toggleClass("visible");
 
@@ -129,14 +129,22 @@ function posOrder() {
         if ($(".payment-methods").hasClass("visible")) {
             $(".payment-methods").html(""); // Clear existing content
             let paymentMethodHtml = '';
+            let paymentCancel = '<img class = "cancel-payment" src="./picture/cancel.png">'
             paymentMethod.forEach(function(item) {
                 paymentMethodHtml += `<div class="payment-method-list" data-method="${item}">${item}</div>`;
             });
-            $(".payment-methods").html(paymentMethodHtml); // Set new content
+            $(".payment-methods").html(paymentCancel);
+            $(".payment-methods").append(paymentMethodHtml); // Set new content
         } else {
             $(".payment-methods").html(""); // Clear existing content if hidden
         }
+        
     });
+
+    $(document).on('click','.cancel-payment', function(){
+        $(".payment-methods").html("");
+        $(".payment-methods").removeClass("visible")
+    })
     //---------------------------------------------------
     // Click event handler for .payment-method-list
     $(document).on('click', '.payment-method-list', function() {
@@ -170,9 +178,9 @@ function posOrder() {
         totalPrice = tax + totalPrice;
 
         // Update display with calculated values
-        $(".tax").text("Tax: " + tax.toFixed(2));
-        $(".total-before-tax").text("Subtotal: " + totalBeforePrice.toFixed(2));
-        $(".total-price").text("Total Amount: " + totalPrice.toFixed(2));
+        $(".tax .value").text(tax.toFixed(2));
+        $(".total-before-tax .value").text(totalBeforePrice.toFixed(2));
+        $(".total-price").text("$ " + totalPrice.toFixed(2));
     }
 
 
@@ -229,7 +237,7 @@ function posOrder() {
         // Click event handler for .pay-btn
         $(document).on('click', '.pay-btn', function() {
             const paymentAmount = parseFloat(currentInput);
-            let totalAmount = parseFloat($(".total-price").text().replace("Total Amount: ", ""));
+            let totalAmount = parseFloat($(".total-price").text().replace("$ ", ""));
 
             if (!isNaN(paymentAmount) && paymentAmount >= totalAmount) {
                 const change = paymentAmount - totalAmount;
@@ -237,7 +245,7 @@ function posOrder() {
 
                 // Update total amount after payment
                 totalAmount = 0; // Update with your new total amount logic
-                $(".total-price").text("Total Amount: " + totalAmount.toFixed(2));
+                $(".total-price").text("$ " + totalAmount.toFixed(2));
                 $('.balance').text("Balance: " + change.toFixed(2));
 
                 // Reset current input and update display
@@ -259,8 +267,8 @@ function posOrder() {
             $(".a0-qty").empty(); // Clear the quantity display
             $(".a0-price").empty(); // Clear the price display
             $(".tax").text("Tax: 0.00"); // Reset tax display
-            $(".total-before-tax").text("Total: 0.00"); // Reset total before tax display
-            $(".total-price").text("Total Amount: 0.00"); // Reset total price display
+            $(".total-before-tax .value").text("0.00"); // Reset total before tax display
+            $(".total-price").text("$ 0.00"); // Reset total price display
 
             // Optional: Reset any other necessary parts of your UI or application state
 
@@ -332,6 +340,19 @@ function posOrder() {
         }
     });
     //---------------------------------------------------
+    // Clear Order
+    $(document).on('click','.bin', function(){
+         // Clear the order details
+         $(".pos").empty(); 
+         $(".a0-qty").empty(); 
+         $(".a0-price").empty();
+         $("tax .label").text("Tax: ") 
+         $(".tax .value").text("0.00"); 
+         $(".total-before-tax .value").text("0.00"); 
+         $(".total-price").text("$ 0.00"); 
+    })
+
+    //---------------------------------------------------
     // Edit quantity
    $(document).on('click', '.a0-qty-num', function() {
     const $qtyContainer = $(this).closest('.a0-qty-num'); // Find the parent container holding quantity information
@@ -361,7 +382,7 @@ function posOrder() {
             $qtyContainer.find('.count').text(countInput);
             updateTotalPrice(); // Update total price after quantity change
             $('.current-quantity').text(countInput);
-            $(".total-price").text('Total Amount: ' + (price * countInput).toFixed(2));
+            $(".total-price").text('$ ' + (price * countInput).toFixed(2));
             $('.modal').css('display', 'none'); // Close the modal after confirmation
         } else {
             // Handle invalid input (not a number or less than 1)
@@ -378,6 +399,12 @@ function posOrder() {
         const now = new Date();
         $('.datetime').text(now.toLocaleString()); // Update element content with current date and time
     }
+
+
+
+    $('.search-item').on('click', function() {
+        $('.searchInput').toggle(); // Show or hide the search input on click
+    });
     //---------------------------------------------------
     // Handle navigation clicks
     $('.nav-item').on('click', function() {

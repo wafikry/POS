@@ -28,7 +28,10 @@
             <!-- Add more items as needed -->
         </div>
         <div class="flx-nw-col">
-            <input class="searchInput" type="text" placeholder="Search items...">
+            <div class="flx-nw-row">
+                <img class="search-item" alt="search-item" src="./picture/search.png">
+                <input class="searchInput" type="text" placeholder="Search items...">
+            </div>
             <div class="list">
                 <!-- Menu items will be dynamically inserted here -->
             </div>
@@ -49,11 +52,14 @@
             </div>
             <div class="out-pos-container">
                 <img class="bin" alt="Bin" src="./picture/bin.png"> 
-                <div class="add-cust">Add Customer</div> 
+                <img class="add-cust-button" src="./picture/people.png">
             </div> 
             <div class="pos-container">
                 <div class="pos-qty-container">
-                    <div class="a0-qty">Qty</div>
+                    <div class="a0-qty-wrd">Qty</div>
+                    <div class="a0-qty">
+
+                    </div>
                 </div>
                 <div class="description">
                     <div class="a0-descr">Description</div>
@@ -61,7 +67,10 @@
                         <!-- POS items will be dynamically inserted here -->
                     </div>
                 </div>
-                <div class="a0-price">Price</div>
+                <div class="price">
+                    <div class="a0-price-wrd">$</div>
+                    <div class="a0-price"></div>
+                </div>
             </div>
             
             <div class="payment-container">
@@ -92,7 +101,7 @@
                 
                 <div class="payment-container01">
                     <div class="total-price">
-                        <span class="label">Total Amount:</span>
+                        <span class="label">$ </span>
                         <span class="value">0.00</span>
                     </div>
                     
