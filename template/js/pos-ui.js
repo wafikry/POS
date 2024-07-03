@@ -1,6 +1,6 @@
 'use strict';
 
-import { paymentMethod, menuCategory, menuItems, optionClickPosItem } from './data.js';
+import { paymentMethod, menuCategory, menuItems, optionClickPosItem, billSetting } from './data.js';
 
 $(document).ready(function() {
     posOrder();
@@ -31,7 +31,7 @@ function posOrder() {
             menuHtml += `<div class="prd-item" data-price="${item.price}">${item.name}<br>$${item.price.toFixed(2)}</div>`;
         });
 
-        // Display the menu items in the list area
+        
         $(".list").html(menuHtml);
     });
     //---------------------------------------------------
@@ -44,8 +44,6 @@ function posOrder() {
         filteredItems.forEach(function(item) {
             menuHtml += `<div class="prd-item" data-price="${item.price}">${item.name}<br>$${item.price.toFixed(2)}</div>`;
         });
-
-        // Display the filtered menu items in the list area
         $(".list").html(menuHtml);
     });
     //---------------------------------------------------
@@ -77,7 +75,6 @@ function posOrder() {
             $posQty.find('.count').text(count); // Update count
             const price = parseFloat($posItem.attr('data-price'));
             $posPrice.text('$' + (price * count).toFixed(2)); // Update price
-            //C:\Users\Latitude 5310\Desktop\My Project\POS\template\picture\mathematical-basic-signs-of-plus-and-minus-with-a-slash.png
         } else {
             // Add new item if it doesn't exist
             const price = parseFloat($(this).data('price'));
@@ -134,9 +131,9 @@ function posOrder() {
                 paymentMethodHtml += `<div class="payment-method-list" data-method="${item}">${item}</div>`;
             });
             $(".payment-methods").html(paymentCancel);
-            $(".payment-methods").append(paymentMethodHtml); // Set new content
+            $(".payment-methods").append(paymentMethodHtml); 
         } else {
-            $(".payment-methods").html(""); // Clear existing content if hidden
+            $(".payment-methods").html(""); 
         }
         
     });
@@ -149,19 +146,14 @@ function posOrder() {
     // Click event handler for .payment-method-list
     $(document).on('click', '.payment-method-list', function() {
         const selectedMethod = $(this).data('method');
-        // Start cashiering process
         cashiering(selectedMethod);
-
-        // Create and populate a new div for order details
         $(".order-details").html(`<div class="order"><h3>Order Details for ${selectedMethod}</h3></div>`);
-
-        // Hide payment methods after selection
-        $(".payment-methods").removeClass("visible").html(""); // Clear existing content if hidden
+        $(".payment-methods").removeClass("visible").html(""); 
     });
     //---------------------------------------------------
-
     // Function to update total price
     function updateTotalPrice() {
+        let serviceCharge = 10 /100;
         let totalPrice = 0;
         let sst = 8 / 100;
 
@@ -171,15 +163,18 @@ function posOrder() {
             const count = parseInt($(this).attr('data-count'));
             totalPrice += (price * count);
         });
-
-        // Calculate tax and update tax display
+        let totalServiceCharge = totalPrice * serviceCharge;       
         let tax = totalPrice * sst;
         const totalBeforePrice = totalPrice;
-        totalPrice = tax + totalPrice;
-
-        // Update display with calculated values
+        totalPrice = tax + totalPrice + totalServiceCharge;
+        $(".service-charge .value").text(totalServiceCharge.toFixed(2));
         $(".tax .value").text(tax.toFixed(2));
         $(".total-before-tax .value").text(totalBeforePrice.toFixed(2));
+        $(".total-price").text("$ " + totalPrice.toFixed(2));
+    }
+    function updateTotalAfterDiscount(totalAmount, discountAmount) {
+        let totalPrice = totalAmount 
+        $(".discount .value").text(discountAmount.toFixed(2));
         $(".total-price").text("$ " + totalPrice.toFixed(2));
     }
 
@@ -262,27 +257,24 @@ function posOrder() {
 
         // Click event handler for dynamically created .done-btn
         $(document).on('click', '.done-btn', function() {
-            // Clear the order details
-            $(".pos").empty(); // Clear the order items
-            $(".a0-qty").empty(); // Clear the quantity display
-            $(".a0-price").empty(); // Clear the price display
-            $(".tax").text("Tax: 0.00"); // Reset tax display
-            $(".total-before-tax .value").text("0.00"); // Reset total before tax display
-            $(".total-price").text("$ 0.00"); // Reset total price display
+           
+            $(".pos").empty();
+            $(".a0-qty").empty();
+            $(".a0-price").empty(); 
+            $(".tax").text("Tax: 0.00"); 
+            $(".total-before-tax .value").text("0.00"); 
+            $(".total-price").text("$ 0.00"); 
 
             // Optional: Reset any other necessary parts of your UI or application state
 
-            // Show a message or perform any other actions after clearing the order
             alert("Order cleared.");
-
-            // Remove the "Done" button
             $(this).remove();
         });
 
         // Cancel button handling
         $(document).on('click', '.cancel-btn', function() {
-            $(".calculator").remove(); // Remove the entire calculator
-            $(".done-btn").hide(); // Hide the done button if visible
+            $(".calculator").remove(); 
+            $(".done-btn").hide(); 
         });
 
         // Exact button handling
@@ -292,8 +284,8 @@ function posOrder() {
             let totalAmount = parseFloat(totalAmountText);
 
             if (!isNaN(totalAmount)) {
-                currentInput = totalAmount.toFixed(2); // Set current input to initial amount
-                updateDisplay(currentInput); // Update display with initial amount
+                currentInput = totalAmount.toFixed(2); 
+                updateDisplay(currentInput); 
             } else {
                 console.error("Unable to parse total amount.");
             }
@@ -301,10 +293,10 @@ function posOrder() {
 
         // Done button handling
         $(document).on('click', '.done-btn', function() {
-            // Handle what happens when the user clicks "Done"
+            
             alert("Transaction completed and closed.");
 
-            // Example: Resetting interface or redirecting somewhere else
+           e
             location.reload(); // Reload the page as an example
         });
 
@@ -317,31 +309,44 @@ function posOrder() {
     // Click event handler for .pos-item
     $(document).on('click', '.pos-item', function(event) {
         console.log("click .pos-item"); // Test console log
-
+    
         // Close any open option-pos-item elements
-        $('.option-pos-item').remove();
+        $('.option-pos-item-container').remove();
+    
         let selectedItem = $(this).attr('data-item');
-        // Generate and append optionHtml to the clicked .pos-item element
-        let optionHtml = '';
+    
+        // Generate and append optionHtml to the body element
+        let optionHtml = '<div class="option-pos-item-container">';
+        optionHtml += '<div class="option-pos-item-close">✖</div>';
         optionClickPosItem.forEach(function(item) {
             optionHtml += '<div class="option-pos-item">' + item + '</div>';
         });
-        $(this).append(optionHtml);
-
+        optionHtml += '</div>';
+        $('body').append(optionHtml);
+    
+        
+    
         // Prevent event propagation to avoid closing immediately
         event.stopPropagation();
     });
-
-    // Close option-pos-item when clicking anywhere else on document
+    
+    // Hide the option-pos-item elements when clicking elsewhere on the body
     $(document).on('click', function(event) {
-        // Check if the clicked element is not a .pos-item or its child
-        if (!$(event.target).closest('.pos-item').length) {
-            $('.option-pos-item').remove(); // Remove all .option-pos-item elements
+        if (!$(event.target).closest('.option-pos-item-container, .pos-item').length) {
+            $('.option-pos-item-container').remove();
         }
     });
-    //---------------------------------------------------
+    
+    // Close button event handler
+    $(document).on('click', '.option-pos-item-close', function() {
+        $('.option-pos-item-container').remove();
+    });
+    //----------------------------------------------
     // Clear Order
     $(document).on('click','.bin', function(){
+        if($('.confirm-order').text() === 'Cancel'){
+            alert("You cannot void this without permission")
+        }else{
          // Clear the order details
          $(".pos").empty(); 
          $(".a0-qty").empty(); 
@@ -350,21 +355,85 @@ function posOrder() {
          $(".tax .value").text("0.00"); 
          $(".total-before-tax .value").text("0.00"); 
          $(".total-price").text("$ 0.00"); 
+         $('.service-charge .value').text("0.00")
+        }
     })
 
+    //---------------------------------------------------
+    // Add customer detail
+    // class = add-cust-button
+    $(document).on('click','.add-cust-button', function(){
+        let addCustDetailHtml = `
+            <div class="guestModal modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <h2>Guest Information</h2>
+                    <label for="guestName">Guest Name:</label>
+                    <input type="text" class="guestName" name="guestName" required>
+                    <label for="tableNumber">Table Number:</label>
+                    <input type="text" class="tableNumber" name="tableNumber" required>
+                    <label for="roomNumber">Room Number:</label>
+                    <input type="text" class="roomNumber" name="roomNumber">
+                    <img src="" alt="Search">
+                    <button class="confirm-btn">Confirm</button>
+                </div>
+            </div>
+        `;
+        $('body').append(addCustDetailHtml);
+        $('.guestModal').css('display', 'block');
+        $('.close').click(function() {
+            $(this).closest('.guestModal').css('display', 'none');
+            $(this).closest('.guestModal').remove();
+        });
+        $('.confirm-btn').click(function() {
+            var guestName = $(this).siblings('.guestName').val();
+            var tableNumber = $(this).siblings('.tableNumber').val();
+            var roomNumber = $(this).siblings('.roomNumber').val();
+            
+            $(this).closest('.guestModal').css('display', 'none');
+            $(this).closest('.guestModal').remove();
+        });
+        
+    })
+    //---------------------------------------------------
+    // Edit Bill setting
+    $(document).on('click', '.bill-setting', function() {
+        let optionHtml = '<div class="bill-setting-container">';
+        optionHtml += '<div class="bill-setting-close">✖</div>';
+        billSetting.forEach(function(item) {
+            optionHtml += '<div class="bill-setting-item">' + item + '</div>';
+        });
+        optionHtml += '</div>';
+        $('body').append(optionHtml);
+
+
+        event.stopPropagation();
+    })
+
+    
+    $(document).on('click', function(event) {
+        if (!$(event.target).closest('.bill-setting-container, .bill-setting').length) {
+            $('.bill-setting-container').remove();
+        }
+    });
+    
+    // Close button event handler
+    $(document).on('click', '.bill-setting-close', function() {
+        $('.bill-setting-container').remove();
+    });
     //---------------------------------------------------
     // Edit quantity
    $(document).on('click', '.a0-qty-num', function() {
     const $qtyContainer = $(this).closest('.a0-qty-num'); // Find the parent container holding quantity information
     console.log('$qtyContainer =',$qtyContainer);
-    const selectedItem = $qtyContainer.data('item'); // Get the selected item name
-    let count = parseInt($qtyContainer.attr('data-count'), 10); // Get current quantity count
+    const selectedItem = $qtyContainer.data('item'); 
+    let count = parseInt($qtyContainer.attr('data-count'), 10); 
     console.log('count = ',$qtyContainer);
-    // Update the quantity display in the modal
+    
     $('.current-quantity').text(count);
-    // Show the modal
+  
     $('.modal').css('display', 'block');
-    // Close the modal when clicking the close button (×)
+    
     $('.close').on('click', function() {
         $('.modal').css('display', 'none');
     });
@@ -383,16 +452,15 @@ function posOrder() {
             updateTotalPrice(); // Update total price after quantity change
             $('.current-quantity').text(countInput);
             $(".total-price").text('$ ' + (price * countInput).toFixed(2));
-            $('.modal').css('display', 'none'); // Close the modal after confirmation
+            $('.modal').css('display', 'none'); 
         } else {
             // Handle invalid input (not a number or less than 1)
             alert('Please enter a valid quantity (must be a number and at least 1).');
-            // Optionally reset the input to 1 or do other error handling
+            // 
             $('.quantity-input').val('1');
         }
     });
 });
-
     //---------------------------------------------------
     // Update date and time function
     function updateDateTime() {
@@ -424,4 +492,29 @@ function posOrder() {
         $('.navbar').toggle();
     });
     //---------------------------------------------------
+
+    $(document).on('click', '.bill-setting-item', function() {
+        if ($(this).text().trim() === "Bill Discount") {
+            $('.discount-div').toggleClass('show');
+        }
+    });
+
+    $('.apply-discount-btn').on('click', function() {
+        const discountType = $('.discount-type').val();
+        const discountValue = parseFloat($('.discount-value').val());
+        let totalAmount = parseFloat($(".total-price").text().replace("$ ", ""));
+        let discountAmount = 0;
+    
+        if (discountType === 'percent') {
+            discountAmount = totalAmount * (discountValue / 100);
+        } else if (discountType === 'amount') {
+            discountAmount = discountValue;
+        }
+    
+        totalAmount -= discountAmount;
+        updateTotalAfterDiscount(totalAmount, discountAmount);
+    
+        
+        $('.discount-div').removeClass('show');
+    });
 };

@@ -1,69 +1,48 @@
-const paymentMethod = ['QR', 'Cash', 'Credit Card', 'Debit Card'];
-const menuCategory = ['coffee', 'tea', 'chocolate', 'smoothies', 'pastries'];
-const menuItems = {
-    coffee: [
-        { name: 'Espresso', price: 2.5 },
-        { name: 'Latte', price: 3.0 },
-        { name: 'Cappuccino', price: 3.5 },
-        { name: 'Americano', price: 2.8 },
-        { name: 'Mocha', price: 3.7 },
-        { name: 'Macchiato', price: 3.2 },
-        { name: 'Flat White', price: 3.0 },
-        { name: 'Affogato', price: 3.8 },
-        { name: 'Cold Brew', price: 3.5 },
-        { name: 'Frappuccino', price: 4.0 },
-        { name: 'Irish Coffee', price: 4.5 }
+// data.js
+export const paymentMethod = ["Cash", "Credit Card", "Mobile Payment", "Gift Card", "Voucher"];
+
+export const menuCategory = ["Appetizers", "Main Course", "Desserts", "Beverages", "Sides", "Salads"];
+
+export const menuItems = {
+    "Appetizers": [
+        { name: "Spring Rolls", price: 5.99 },
+        { name: "Garlic Bread", price: 3.99 },
+        { name: "Bruschetta", price: 4.99 },
+        { name: "Stuffed Mushrooms", price: 6.99 }
     ],
-    tea: [
-        { name: 'Black Tea', price: 2.0 },
-        { name: 'Green Tea', price: 2.2 },
-        { name: 'Oolong Tea', price: 2.3 },
-        { name: 'Herbal Tea', price: 2.4 },
-        { name: 'Chai Tea', price: 2.5 },
-        { name: 'White Tea', price: 2.6 },
-        { name: 'Matcha Tea', price: 3.0 },
-        { name: 'Earl Grey', price: 2.2 },
-        { name: 'Jasmine Tea', price: 2.4 },
-        { name: 'Lemon Tea', price: 2.5 }
+    "Main Course": [
+        { name: "Grilled Chicken", price: 12.99 },
+        { name: "Spaghetti Bolognese", price: 10.99 },
+        { name: "Beef Steak", price: 15.99 },
+        { name: "Vegetable Stir Fry", price: 9.99 }
     ],
-    chocolate: [
-        { name: 'Hot Chocolate', price: 3.2 },
-        { name: 'Chocolate Milkshake', price: 4.0 },
-        { name: 'Chocolate Smoothie', price: 3.8 },
-        { name: 'Chocolate Frappuccino', price: 4.2 },
-        { name: 'White Hot Chocolate', price: 3.5 },
-        { name: 'Chocolate Mocha', price: 4.0 },
-        { name: 'Chocolate Affogato', price: 4.3 },
-        { name: 'Chocolate Latte', price: 3.9 },
-        { name: 'Chocolate Espresso', price: 3.5 },
-        { name: 'Double Chocolate', price: 4.5 }
+    "Desserts": [
+        { name: "Chocolate Cake", price: 4.99 },
+        { name: "Ice Cream", price: 2.99 },
+        { name: "Cheesecake", price: 5.99 },
+        { name: "Apple Pie", price: 3.99 }
     ],
-    smoothies: [
-        { name: 'Strawberry Smoothie', price: 4.0 },
-        { name: 'Mango Smoothie', price: 4.2 },
-        { name: 'Banana Smoothie', price: 3.8 },
-        { name: 'Blueberry Smoothie', price: 4.1 },
-        { name: 'Mixed Berry Smoothie', price: 4.3 },
-        { name: 'Pineapple Smoothie', price: 4.0 },
-        { name: 'Peach Smoothie', price: 4.2 },
-        { name: 'Tropical Smoothie', price: 4.5 },
-        { name: 'Green Smoothie', price: 4.0 },
-        { name: 'Protein Smoothie', price: 4.8 }
+    "Beverages": [
+        { name: "Coca Cola", price: 1.99 },
+        { name: "Orange Juice", price: 2.49 },
+        { name: "Lemonade", price: 2.99 },
+        { name: "Coffee", price: 1.49 }
     ],
-    pastries: [
-        { name: 'Croissant', price: 2.5 },
-        { name: 'Muffin', price: 2.8 },
-        { name: 'Scone', price: 2.7 },
-        { name: 'Danish', price: 3.0 },
-        { name: 'Bagel', price: 2.0 },
-        { name: 'Donut', price: 1.5 },
-        { name: 'Brownie', price: 3.2 },
-        { name: 'Cookie', price: 1.8 },
-        { name: 'Cinnamon Roll', price: 3.5 },
-        { name: 'Eclair', price: 3.0 }
+    "Sides": [
+        { name: "French Fries", price: 2.99 },
+        { name: "Mashed Potatoes", price: 3.49 },
+        { name: "Onion Rings", price: 3.99 },
+        { name: "Coleslaw", price: 2.49 }
+    ],
+    "Salads": [
+        { name: "Caesar Salad", price: 5.99 },
+        { name: "Greek Salad", price: 6.49 },
+        { name: "Garden Salad", price: 4.99 },
+        { name: "Cobb Salad", price: 7.99 }
     ]
 };
+export const billSetting = ["Bill Discount","Split Bill","Split Item"];
 
-const optionClickPosItem = ['Override', 'Bill Discount', 'Test'];
+export const optionClickPosItem = ["Override", "Item Discount",];
 
-export { paymentMethod, menuCategory, menuItems, optionClickPosItem };
+export const addOnDrinks = [""]
