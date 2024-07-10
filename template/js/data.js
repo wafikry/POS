@@ -41,8 +41,26 @@ export const menuItems = {
         { name: "Cobb Salad", price: 7.99 }
     ]
 };
+
 export const billSetting = ["Bill Discount","Split Bill","Split Item"];
 
-export const optionClickPosItem = ["Override", "Item Discount",];
+export const optionClickPosItem = ["Add-On","Change Item","Override", "Item Discount"];
 
-export const addOnDrinks = [""]
+export const addOnFood = [
+    { name: "Extra Cheese", price: 1.50 },
+    { name: "Bacon", price: 2.00 },
+    { name: "Avocado", price: 1.75 },
+    { name: "Mushrooms", price: 1.25 },
+    { name: "Fried Egg", price: 1.50 }
+];
+
+export const addOnDrinks = [
+    { name: "Whipped Cream", price: 0.50 },
+    { name: "Extra Shot of Espresso", price: 1.00 },
+    { name: "Flavor Syrup", price: 0.75 },
+    { name: "Almond Milk", price: 0.50 },
+    { name: "Ice Cubes", price: 0.25 }
+];
+
+
+export const tableNumber = Array.from({ length: 20 }, (_, i) => i + 1);

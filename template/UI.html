@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +12,9 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
+
 <body>
+    <div class="nav-item" data-target="view-orders.html">View Orders</div>
     <div class="slide-in-div discount-div">
         <div class="discount-content">
             <div class="cancel">X</div>
@@ -27,101 +30,180 @@
         </div>
     </div>
     <div class="pos-div">
-    <div class="flx-nw">
-        <div class="navbar">
-            <div class="nav-item" data-target="pos">POS</div>
-            <div class="nav-item" data-target="settings">Settings</div>
-        </div>
-        <div class="flx-nw-col">
-            <div class="flx-nw-row">
-                <img class="search-item" alt="search-item" src="./picture/search.png">
-                <input class="searchInput" type="text" placeholder="Search items...">
+        <div class="flx-nw">
+            <div class="navbar">
+                <div class="nav-item" data-target="pos">POS</div>
+                <div class="nav-item" data-target="settings">Settings</div>
             </div>
-            <div class="category"></div>
-            <div class="pick-type">
-                <div class="list"></div>
-                <div class="box-1"></div>
-            </div>
-        </div>
-        <div class="a0-container">
-            <div class="modal">
-                <div class="modal-content">
-                    <span class="close">&times;</span>
-                    <h2>Edit Quantity</h2>
-                    <p>Current Quantity: <span class="current-quantity"></span></p>
-                    <input type="number" class="quantity-input" min="1" value="1">
-                    <button class="confirm-btn">Confirm</button>
+            <div class="flx-nw-col">
+                <div class="flx-nw-row-above">
+                    <div class="flx-nw-row">
+                        <img class="search-item" alt="search-item" src="./picture/search.png">
+                        <input class="searchInput" type="text" placeholder="Search items...">
+                        
+                    </div>
+                    <div class="service-options">
+                        <label>
+                            <input type="radio" name="serviceOption" value="dine-in">
+                            Dine-in
+                        </label>
+                        <label>
+                            <input type="radio" name="serviceOption" value="take-away">
+                            Take-away
+                        </label>
+                        <label>
+                            <input type="radio" name="serviceOption" value="room-service">
+                            Room Service
+                        </label>
+                    </div>
+                </div>
+                <div class="category"></div>
+                <div class="pick-type">
+                    <div class="list"></div>
+                    <div class="box-1"></div>
                 </div>
             </div>
-            <div class="out-pos-container">
-                <div class="bin">Reset</div> 
-                <div class="add-cust-button">Guest</div>
-                <div class="bill-setting">Bill Setting</div>
-                <div class="print-rec">Print Receipt</div>
-            </div> 
-            <div class="pos-container">
-                <div class="inside-pos-container">   
-                    <div class="unite">
-                        <div class="pos-qty-container">
-                            <div class="a0-qty-wrd">Qty</div>
-                            <div class="a0-qty"></div>
-                        </div>
-                        <div class="description">
-                            <div class="a0-descr">Description</div>
-                            <div class="pos"></div>
+            <div class="a0-container">
+                <div class="modal">
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <h2>Edit Quantity</h2>
+                        <p>Current Quantity: <span class="current-quantity"></span></p>
+                        <input type="number" class="quantity-input" min="1" value="1">
+                        <button class="confirm-btn-modal">Confirm</button>
+                    </div>
+                </div>
+                <div class="add-ons-container">
+                    <div class="add-ons">
+                        <!-- Add-ons will be dynamically populated here -->
+                    </div>
+                </div>
+                <div class="override-container">
+                    <div class="override">
+                        <!-- Add-ons will be dynamically populated here -->
+                    </div>
+                </div>
+                <div class="item-discount-container">
+                    <div class="item-discount">
+
+                    </div>
+                </div>
+                <div class="split-bill-container">
+                    <div class="split-bill">
+                        <div class="split-bill-content">
+                            <span class="close-split">&times;</span>
+                            <h2>Split Bill</h2>
+                            <div class="container-label-split">
+                                <label class="split-wrd" for="split-bill-amount">Number of Splits:</label>
+                                <input type="number" id="split-bill-amount" min="1" value="1">
+                            </div>
+                            <div class="split-pick-option">
+                                <label>
+                                    <input type="radio" name="split-type" value="percent" checked> By Percentage
+                                </label>
+                                <label>
+                                    <input type="radio" name="split-type" value="amount"> By Amount
+                                </label>
+                            </div>
+                            
+                            <div class="split-input-fields">
+                                <!-- Dynamic input fields will be populated here -->
+                            </div>
+                            
+                            <button class="apply-split-bill-btn">Apply Split</button>
+                            <div class="split-bill-details">
+                                <!-- Split details will be displayed here -->
+                            </div>
                         </div>
                     </div>
-                    <div class="price">
-                        <div class="a0-price-wrd">Price</div>
-                        <div class="a0-price"></div>
-                    </div> 
                 </div>
-            </div>
-            <div class="box-1"></div>
-            <div class="payment-container">
-                <div class="total-before-tax">
-                    <span class="label">Subtotal:</span>
-                    <span class="value">0.00</span>
+                <div class="split-item-container">
+                    <div class="split-item-content">
+                        <span class="close-split-item">&times;</span>
+                        <h2>Split Item</h2>
+                        <div class="container-label-split">
+                            <label class="split-wrd" for="split-item-amount">Number of Splits:</label>
+                            <input type="number" id="split-item-amount" min="1" value="1">
+                        </div>
+                        <button class="apply-split-item-btn">Apply Split</button>
+                        <div class="split-item-details">
+                            <!-- Split details will be displayed here -->
+                        </div>
+                    </div>
                 </div>
-                <div class="discount">
-                    <span class="label">Discount:</span>
-                    <span class="value">0.00</span>
+                <div class="row-vw">
+                    <div class="order-id">Order Id:######</div>
+                    <div class="transaction-date">Transaction Date: <span class="date"></span></div>
                 </div>
-                <div class="cash-back">
-                    <span class="label">Cashback:</span>
-                    <span class="value">0.00</span>
+                <div class="out-pos-container">
+                    <div class="bin">Reset</div>
+                    <div class="add-cust-button">Guest</div>
+                    <div class="bill-setting">Bill Setting</div>
+                    <div class="print-rec">Print Receipt</div>
                 </div>
-                <div class="service-charge">
-                    <span class="label">Service Charge:</span>
-                    <span class="value">0.00</span>
+                <div class="pos-container">
+                    <div class="inside-pos-container">
+                        <div class="unite">
+                            <div class="pos-qty-container">
+                                <div class="a0-qty-wrd">Qty</div>
+                                <div class="a0-qty"></div>
+                            </div>
+                            <div class="description">
+                                <div class="a0-descr">Description</div>
+                                <div class="pos"></div>
+                            </div>
+                        </div>
+                        <div class="price">
+                            <div class="a0-price-wrd">Price</div>
+                            <div class="a0-price"></div>
+                        </div>
+                    </div>
                 </div>
-                <div class="tax">
-                    <span class="label">Tax:</span>
-                    <span class="value">0.00</span>
-                </div>
-                <div class="balance">
-                    <span class="label">Amount Due:</span>
-                    <span class="value">0.00</span>
-                </div>
-                <div class="payment-container01">
-                    <div class="total-price">
-                        <span class="label">$ </span>
+                <div class="box-1"></div>
+                <div class="payment-container">
+                    <div class="total-before-tax">
+                        <span class="label">Subtotal:</span>
                         <span class="value">0.00</span>
                     </div>
-                    <div class="confirm-order">Save</div>
+                    <div class="discount">
+                        <span class="label">Discount:</span>
+                        <span class="value">0.00</span>
+                    </div>
+                    
+                    <div class="service-charge">
+                        <span class="label">Service Charge:</span>
+                        <span class="value">0.00</span>
+                    </div>
+                    <div class="tax">
+                        <span class="label">Tax:</span>
+                        <span class="value">0.00</span>
+                    </div>
+                    <div class="balance">
+                        <span class="label">Amount Due:</span>
+                        <span class="value">0.00</span>
+                    </div>
+                    <div class="payment-container01">
+                        <div class="total-price">
+                            <span class="label">$ </span>
+                            <span class="value">0.00</span>
+                        </div>
+                        <div class="confirm-order">Save</div>
+                    </div>
+                    <div class="payment-methods"></div>
+                    <div class="price-input-container">
+                        <div class="price-input"></div>
+                    </div>
                 </div>
-                <div class="payment-methods"></div>
-                <div class="price-input-container">
-                    <div class="price-input"></div>
+                <div class="box-2"></div>
+                <div class="item-setting">
+                    <div class="option-setting-container">
+                        <button class="add-on-btn">Add-On</button>
+                    </div>
                 </div>
-            </div>
-            <div class="box-2"></div>
-            <div class="item-setting">
-                <div class="option-setting-container"></div>
             </div>
         </div>
     </div>
-</div>
     <script type="module" src="./js/pos-ui.js"></script>
 </body>
+
 </html>

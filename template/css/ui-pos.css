@@ -193,40 +193,42 @@ button:hover {
     color: whitesmoke; /* White text color */
     position: relative;
 }
-.bill-setting-container{
+.bill-setting-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(125%, -108%);
-    background-color: rgba(4, 87, 83, 0.868);
-    padding: 20px;
-    border-radius: 10px;
+    position: fixed;
+    top: 20%;
+    right: -400px;
+    transform: translateY(-50%);
+    background-color: rgba(57, 4, 87, 0.95);
+    padding: 30px;
+    border-radius: 15px;
     z-index: 1000;
+    transition: right 0.5s ease;
+    width: 100px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-.bill-setting-item{
-    display: flex;
-    align-items: center;
+
+.bill-setting-container.open {
+    transform: translateX(0%);
+    right: 0; /* Bring it to the screen */
+}
+
+.bill-setting-item {
+    color: #ffffff;
+    margin: 10px 0;
+    padding: 10px 20px;
+    background-color: rgba(97, 34, 109, 0.952);
+    border-radius: 10px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
     justify-content: center;
-    height: 40px;
-    width: 80px;
-    background-color: #f0f0f0;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 10px;
-    margin: 5px 0;
-    color: #333;
-    font-size: 16px;
-    font-weight: bold;
+    align-items: center;
     text-align: center;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    white-space: pre-wrap;
 }
-.bill-setting-close{
+
+.bill-setting-close {
     color: #e75a5a;
     font-weight: bolder;
     position: absolute;
@@ -451,7 +453,7 @@ button:hover {
     align-items: center;
     gap: 20px;
     box-sizing: border-box;
-    margin-top: -17px;
+    margin-top: 2px;
 }
 
 .payment,
@@ -495,11 +497,11 @@ button:hover {
     color: white; /* Adjust color if needed */
 }
 .balance .label{
-    font-size: 15px;
+    font-size: 1.5re,;
 }
 .balance .value{
     color: white;
-    font-size: 15px;
+    font-size: 1.5re,;
     font-weight: bold;
 }
 
@@ -647,7 +649,7 @@ button:hover {
     display: none; /* Initially hidden */
     position: absolute;
     top: 70%; /* Position below the .payment button */
-    left: 20%; /* Center horizontally */
+    left: 50%; /* Center horizontally */
     width: 200px; /* Adjust width as needed */
     background-color: #006A4E; /* Background color */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -665,9 +667,92 @@ button:hover {
 .payment-methods.visible {
     display: flex; /* Display flex when visible */
     opacity: 1; /* Full opacity when visible */
-    transform: translateX(-180%); /* Shift to the left when visible */
+    transform: translateX(-150%); /* Shift to the left when visible */
+    top:10%;
+    right:70%
+}
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+    }
+
+    .search-bar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .search-bar input[type="text"] {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .search-bar button {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .list .item {
+        width: 100%;
+        margin: 1% 0;
+    }
+
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .navbar a {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    .footer {
+        position: relative;
+    }
 }
 
+@media (max-width: 480px) {
+    .container {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .search-bar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .search-bar input[type="text"] {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .search-bar button {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .list .item {
+        width: 100%;
+        margin: 1% 0;
+    }
+
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .navbar a {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    .footer {
+        position: relative;
+    }
+}
 
 @media only screen and (max-width: 768px) {
     .payment-methods.visible {
@@ -721,40 +806,81 @@ button:hover {
     border-bottom-left-radius: 5px;
     border-top-right-radius: 5px;
 }
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+    }
+
+    .search-bar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .search-bar input[type="text"] {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .list .item {
+        width: 100%;
+        margin: 1% 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .list .item {
+        width: 100%;
+        margin: 1% 0;
+    }
+
+    .search-bar button {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
 
 .option-pos-item-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    position: absolute;
+    position: fixed; /* Make it slide from the edge of the screen */
     top: 50%;
-    left: 50%;
-    transform: translate(45%, -70%);
-    background-color: rgba(4, 87, 83, 0.868); /* Background overlay */
-    padding: 20px;
-    border-radius: 10px;
+    right: -400px; /* Start off-screen to the right */
+    transform: translateY(-50%);
+    background-color: rgba(57, 4, 87, 0.95); /* Darker background overlay for better contrast */
+    padding: 30px; /* Increased padding for better spacing */
+    border-radius: 15px; /* More rounded corners */
     z-index: 1000; /* Ensure it appears above other elements */
+    transition: right 0.5s ease; /* Smooth transition */
+    width: 100px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow for depth */
+}
+.option-pos-item-container.active {
+    right: 0; /* Slide into view */
 }
 .option-pos-item {
-    display: flex; /* Add flexbox */
-    align-items: center; /* Center vertically */
-    justify-content: center; /* Center horizontally */
-    height: 40px;
-    width: 80px;
-    background-color: #f0f0f0;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 10px;
-    margin: 5px 0;
-    color: #333;
-    font-size: 16px;
-    font-weight: bold;
+    color: #ffffff; /* White color for text */
+    margin: 10px 0; /* Space between items */
+    padding: 10px 20px; /* Padding for items */
+    background-color: rgba(97, 34, 109, 0.952); /* Slightly transparent background */
+    border-radius: 10px; /* Rounded corners for items */
+    transition: background-color 0.3s ease, transform 0.3s ease; 
+    justify-content: center;
+    align-items: center;
     text-align: center;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    white-space: pre-wrap;
 }
+.option-pos-item:hover {
+    background-color: rgba(255, 255, 255, 0.2); /* Darker background on hover */
+    transform: scale(1.05); /* Slightly enlarge on hover */
+    cursor: pointer;
+}
+
 .option-pos-item-close{
     color: #e75a5a;
     font-weight: bolder;
@@ -1063,14 +1189,14 @@ button[type="submit"]:hover {
 
 .searchInput {
     display: none;
-    width: 80%;
-    height: auto;
+    width: 380px;
+    height: 33px;
     top: 15px;
     left: 50%;
    /* transform: translateX(-0%);*/
     z-index: 1000;
-    max-width: 250px;
-    padding: 5px;
+    max-width:700px;
+    padding: 2px;
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 16px;
@@ -1188,6 +1314,7 @@ button[type="submit"]:hover {
     background-color: #a69ac3;
     color: #ffffff;
     transform: scale(1.05); /* Scale up slightly on hover */
+    cursor: pointer;
 }
 
 @keyframes pulse {
@@ -1258,13 +1385,16 @@ button[type="submit"]:hover {
     padding: 25px; /* Increased padding for better spacing */
     border-radius: 16px; /* Further increased border-radius for even smoother edges */
     z-index: 1000;
-    width: 400px; /* Adjusted width for better layout */
+    width: 850px; /* Adjusted width for better layout */
     max-width: 90%;
     font-family: 'Montserrat', sans-serif;
     border: 1px solid #ddd; /* Lightened border for a subtler separation */
     height: auto; /* Adjusted height for better content adaptation */
     max-height: 80%; /* Set maximum height to avoid overflow */
     overflow-y: auto; /* Added overflow-y for better handling of content */
+}
+.guestModal::-webkit-scrollbar{
+    width: 5px;
 }
 
 .guestModal::before {
@@ -1384,3 +1514,704 @@ button[type="submit"]:hover {
 .apply-discount-btn:hover {
     background-color: #0056b3;
 }
+.add-ons-container {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height:100%;
+    width: 450px; /* Adjust width as needed */
+    background-color: #d5cae2; /* Purple-like background color */
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5); /* Box shadow */
+    padding: 20px;
+    z-index: 2000;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+}
+
+.add-ons-container.show {
+    transform: translateX(0);
+}
+
+.add-ons {
+    text-align: center;
+}
+
+.add-ons-close:hover {
+    color: #DDD; /* Lighter shade on hover */
+}
+
+.add-ons-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: #EEE; /* Adjust color to match your theme */
+    transition: color 0.3s ease-in-out;
+}
+
+.add-on-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    font-size: medium;
+    color: #151517;
+    font-weight: bold;
+    border-bottom: 1px solid #DDD; /* Lighter border color */
+}
+.add-on-item:hover{
+    background-color: lightslategrey;
+    cursor: pointer;
+}
+
+.add-on-item:last-child {
+    border-bottom: none;
+}
+
+.table-selection {
+    margin-bottom: 20px;
+    text-align: center; /* Center aligning the table selection */
+}
+.room-num-confirm {
+    padding: 15px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 10px;
+    font-size: 16px;
+    color: #333;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.order-id {
+    font-family: 'Arial', sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+    border-radius: 8px;
+    display: inline-block;
+    margin-bottom: -33px;
+}
+
+.table-box {
+    display: inline-block;
+    width: 100px; /* Fixed width */
+    padding: 15px 20px; /* Increased padding for better touchability */
+    margin: 10px;
+    background-color: #008080; /* White background */
+    border: 1px solid #ddd; /* Lighter border */
+    border-radius: 8px; /* Slightly rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    cursor: pointer;
+    transition: all 0.3s ease; /* Smooth transition for all properties */
+    font-size: 16px;
+    color: white; /* Dark text color */
+    text-align: center; /* Center align text */
+}
+
+.table-box:hover {
+    background-color: #025353; /* Lighter background on hover */
+    transform: translateY(-3px); /* Lift the box slightly on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+}
+.table-box.selected {
+    transition: all 0.3s ease;
+    background-color: #a34545; /* Darker background when selected */
+     /* Lift the box slightly on selection */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Enhanced shadow on selection */
+    color: white;
+}
+.table-box.selected:hover{
+    background-color: #852c2c;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+.confirm-btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+}
+
+.confirm-btn:hover {
+    background-color: #45a049;
+}
+
+.flx-nw-row-above{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 0px;
+}
+.service-options {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 15px;
+}
+
+.service-options label {
+    margin: 5px 0;
+    font-size: 16px;
+    font-size: smaller;
+    color: white;
+}
+
+.service-options input[type="radio"] {
+    margin-right: 10px;
+}
+.override-container {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 250px; /* Adjust width as needed */
+    background-color: #d8c8db; /* White background */
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5); /* Box shadow */
+    padding: 20px;
+    z-index: 2000;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+}
+
+.override-container.show {
+    transform: translateX(0);
+}
+
+.override-content {
+    text-align: center;
+}
+
+.override-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: #999; /* Adjust color to match your theme */
+    transition: color 0.3s ease-in-out;
+}
+
+.override-close:hover {
+    color: #666; /* Darker shade on hover */
+}
+
+.override-content h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: #8458B3; /* Adjust color to match your theme */
+}
+
+.override-price {
+    margin-bottom: 20px;
+}
+
+.override-price label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #333; /* Adjust color to match your theme */
+}
+
+.override-price input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+.override-price button.apply-override-btn {
+    background-color: #8458B3; /* Adjust background color to match your theme */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.override-price button.apply-override-btn:hover {
+    background-color: #5e3b87; /* Darker shade on hover */
+}
+.item-discount-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+/* Show the modal when .show class is added */
+.item-discount-container.show {
+    display: flex;
+}
+
+/* Item Discount Modal Content */
+.item-discount-content {
+    background-color: #ffffff; /* White background */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); /* Box shadow for depth */
+    width: 300px; /* Adjust width as needed */
+    max-width: 80%;
+    text-align: center;
+}
+
+.item-discount-content h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: #8458B3; /* Adjust color to match your theme */
+}
+
+.item-discount-content label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #333; /* Adjust color to match your theme */
+}
+
+.item-discount-content select,
+.item-discount-content input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+.item-discount-content button {
+    background-color: #8458B3; /* Adjust background color to match your theme */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.item-discount-content button:hover {
+    background-color: #5e3b87; /* Darker shade on hover */
+}
+
+.item-discount-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #999; /* Adjust color to match your theme */
+    transition: color 0.3s ease-in-out;
+}
+
+.item-discount-close:hover {
+    color: #666; /* Darken color on hover */
+}
+
+.cancel {
+    cursor: pointer;
+    color: #8458B3; /* Adjust color to match your theme */
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.cancel:hover {
+    color: #5e3b87; /* Darker shade on hover */
+}
+
+/* Split Bill Container */
+.split-bill-container {
+    position: fixed;
+    right: -500px; /* Adjust this value based on the width of your container */
+    top: 0;
+    width: 500px; /* Adjust this value based on your design */
+    height: 100%;
+    background-color: #fff;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+    transition: right 0.3s ease-in-out;
+    z-index: 2000; /* Ensure it stays on top */
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.split-bill-container.show {
+    right: 0;
+}
+
+.split-bill-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.split-bill-close {
+    cursor: pointer;
+    font-size: 24px;
+}
+
+.split-bill-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    font-size: 18px;
+}
+
+.split-bill-item:last-child {
+    border-bottom: none;
+}
+
+.split-bill-footer {
+    margin-top: auto;
+    display: flex;
+    justify-content: space-between;
+    font-size: 18px;
+    font-weight: bold;
+    padding-top: 10px;
+    border-top: 1px solid #ddd;
+}
+
+.confirm-split-btn {
+    margin-top: 20px;
+    background-color: #8458B3;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.confirm-split-btn:hover {
+    background-color: #67428a;
+}
+.split-bill-content {
+    background-color: #f7f7f7;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: 'Montserrat', sans-serif;
+    color: #333;
+}
+.split-bill-content .close-split {
+    font-size: 24px;
+    font-weight: bold;
+    color: #8458B3;
+    cursor: pointer;
+    float: right;
+}
+.split-bill-content h2 {
+    text-align: center;
+    color: #8458B3;
+    margin-bottom: 20px;
+}
+
+.container-label-split {
+    margin-bottom: 20px;
+}
+.split-wrd {
+    font-weight: 600;
+    font-size: 16px;
+    color: #8458B3;
+    margin-bottom: 8px;
+}
+
+#split-bill-amount {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #8458B3;
+    border-radius: 5px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+#split-bill-amount:focus {
+    border-color: #5e3b87;
+}
+
+.split-pick-option {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.split-pick-option label {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    display: flex;
+    align-items: center;
+}
+
+.split-pick-option input {
+    margin-right: 10px;
+}
+
+.split-input-fields {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.split-input-fields div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.split-input-fields label {
+    font-weight: 600;
+    color: #8458B3;
+}
+
+.split-input-fields input {
+    width: 100px;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #8458B3;
+    border-radius: 5px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.split-input-fields input:focus {
+    border-color: #5e3b87;
+}
+
+.apply-split-bill-btn {
+    background-color: #8458B3;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.apply-split-bill-btn:hover {
+    background-color: #5e3b87;
+}
+
+.split-bill-details {
+    margin-top: 20px;
+    font-size: 16px;
+    color: #333;
+}
+
+.split-bill-details p {
+    margin: 5px 0;
+}
+.slide-in-div.discount-div {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 350px; /* Adjust width as needed */
+    background-color: #ffffff; /* White background */
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5); /* Box shadow */
+    padding: 20px;
+    z-index: 2000;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+}
+
+.slide-in-div.discount-div.show {
+    transform: translateX(0);
+}
+
+.discount-content {
+    text-align: center;
+}
+
+.cancel {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: #999; /* Adjust color to match your theme */
+    transition: color 0.3s ease-in-out;
+}
+
+.cancel:hover {
+    color: #666; /* Darker shade on hover */
+}
+
+.discount-content h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: #8458B3; /* Adjust color to match your theme */
+}
+
+.discount-content label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #333; /* Adjust color to match your theme */
+}
+
+.discount-content select,
+.discount-content input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+.discount-content button.apply-discount-btn {
+    background-color: #8458B3; /* Adjust background color to match your theme */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.discount-content button.apply-discount-btn:hover {
+    background-color: #5e3b87; /* Darker shade on hover */
+}
+
+.split-item-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+/* Show the modal when .show class is added */
+.split-item-container.show {
+    display: flex;
+}
+
+/* Split Item Modal Content */
+.split-item-content {
+    background-color: #ffffff; /* White background */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); /* Box shadow for depth */
+    width: 300px; /* Adjust width as needed */
+    max-width: 80%;
+    text-align: center;
+}
+
+.split-item-content h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.split-item-content label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.split-item-content input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+.split-item-content button {
+    background-color: #8458B3; /* Your theme color */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.split-item-content button:hover {
+    background-color: #6a3d8c; /* Darker shade for hover */
+}
+
+.split-item-content .close-split-item {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #999;
+    transition: color 0.3s ease-in-out;
+}
+
+.split-item-content .close-split-item:hover {
+    color: #666; /* Darken color on hover */
+}
+.row-vw {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: -10px; /* Adjust margin as needed */
+    padding: 10px; /* Adjust padding as needed */
+    
+    border-radius: 5px; /* Example border radius */
+}
+.transaction-date{
+    font-family: 'Robotto', sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    color: white;
+    border-radius: 8px;
+    display: inline-block;
+    margin-bottom: -33px;
+}
+.transaction-date .date{
+    font-size: 18px;
+
+}
+.back-button {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #007BFF;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+    background-color: #0056b3;
+}
+
